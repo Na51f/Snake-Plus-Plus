@@ -1,0 +1,17 @@
+Index: Assets/Scripts/Players/Player.cs
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/Assets/Scripts/Players/Player.cs b/Assets/Scripts/Players/Player.cs
+--- a/Assets/Scripts/Players/Player.cs	(date 1608450107111)
++++ b/Assets/Scripts/Players/Player.cs	(date 1608450107111)
+@@ -46,7 +46,7 @@
+         public void Move()
+         {
+             var obj = _tail.Dequeue();
+-            obj.transform.position = ;
++            // TODO: re-enqueue the member
+         }
+     }
+ }
