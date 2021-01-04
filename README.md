@@ -1,5 +1,5 @@
 # Snake-Plus-Plus
-A snake recreation that can be played with a friend.
+A snake recreation that can be played with friends in multiplayer.
 
 Made in Unity.
 
@@ -13,14 +13,16 @@ To obtain the rights to use and edit these files, contact my email above.
 
 ## Updates
 
-### V1.0
+### V0.1
 Two player snake.
 Food generates every few seconds.	
 
-### TODO: 
-	AI Opponent.
-	Game modes.
-	Online
+### TODO:
+	- Refactor program to make it more modular
+	- Online multiplayer
+	- AI opponents
+	- Additional game modes
+	
 
 ## Compilation
 This project can be run with the Unity Editor and can be built with the default settings.
