@@ -13,7 +13,7 @@ namespace Scripts.Snakes
     /// <see> https://en.wikipedia.org/wiki/Snake_(video_game_genre) </see>
     /// </summary>
     [Serializable]
-    public class Snake : MonoBehaviour
+    public class Snake
     { 
         [SerializeField] private Color color;
 
