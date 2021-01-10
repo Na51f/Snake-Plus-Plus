@@ -16,31 +16,59 @@ namespace Scripts.Snakes
     public class Snake
     { 
         [SerializeField] private Color color;
+        [SerializeField] private string up;
+        [SerializeField] private string down;
+        [SerializeField] private string left;
+        [SerializeField] private string right;
+        
+        public Vector2 Position { private get; set; }
+        public Vector2 Direction { get; set; }
+        public GameObject Head { get; set; }
 
-        private readonly GameObject _head;
         private readonly Queue<GameObject> _tail;
-        private Dictionary<string, Vector2> _controls;
         private Vector2 _direction;
+        private Dictionary<string, Vector2> _controls;
 
-        public Snake(GameObject head, string u, string d, string l, string r)
+        /// <summary>
+        /// Constructor
+        /// <c> Snake() </c>
+        /// Creates a new 
+        /// </summary>
+        public Snake()
         {
-            _head = head;
+            Head = new GameObject();
+            Head.transform.position = Position;
             _tail = new Queue<GameObject>();
-            var x = head.transform.position.x;
-            _direction = new Vector2(math.round(x / math.abs(x)), 0);
-            SetControls(u, d, l, r);
+            SetControls(up, down, left, right); 
+            Head.GetComponent<SpriteRenderer>().color = color;
         }
 
+        /// <summary>
+        /// Function
+        /// <c> Move </c>
+        /// Increments the position of the head by the direction.
+        /// Moves the last member of the tail to wherever the head was last.
+        /// </summary>
         private void Move()
         {
             var toRequeue = _tail.Dequeue();
             _tail.Enqueue(toRequeue);
-            var position = _head.transform.position;
+            var position = Head.transform.position;
             toRequeue.transform.position = position;
             position += (Vector3) _direction;
-            _head.transform.position = position;
+            Head.transform.position = position;
         }
 
+        /// <summary>
+        /// Function
+        /// <c> SetControls </c>
+        /// Assigns controls of this snake instance to vectors to assign
+        /// positions. Assigns one key (as a string) to one vector.
+        /// </summary>
+        /// <param name="u">Up Key</param>
+        /// <param name="d">Down Key</param>
+        /// <param name="l">Left Key</param>
+        /// <param name="r">Right Key</param>
         private void SetControls(string u, string d, string l, string r)
         {
             _controls = new Dictionary<string, Vector2>
@@ -52,7 +80,7 @@ namespace Scripts.Snakes
             };
         }
 
-        private void GetInput()
+        public void GetInput()
         {
             foreach (var dir in 
                 from dir 
@@ -66,12 +94,9 @@ namespace Scripts.Snakes
             }
         }
 
-        public void Awake()
-        {
-            var sr = _head.GetComponent<SpriteRenderer>();
-            sr.color = color;
-        }
-
+        /// <summary>
+        ///
+        /// </summary>
         public void Update()
         {
             GetInput();
