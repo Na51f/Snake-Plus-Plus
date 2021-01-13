@@ -12,7 +12,7 @@ namespace Scripts.Events
     /// Controls the list of snakes (players or AIs)
     /// </summary>
     [ExecuteInEditMode]
-    public class SnakeManager : MonoBehaviour
+    public class Setup : MonoBehaviour
     {
         public GameObject SnakePrefab { get; set; }
         [SerializeField] private List<Snake> snakeList;
@@ -33,12 +33,17 @@ namespace Scripts.Events
 
         // TODO Docs
         
+        /// <summary>
+        /// Event Function
+        /// <c> Update </c>
+        /// Checks each frame if number of snakes has increased.
+        /// </summary>
         public void Update()
         {
             _snakeCount = snakeList.Count;
         }
 
-        IEnumerator NewSnakeCheck()
+        private IEnumerator NewSnakeCheck()
         {
             yield return new WaitUntil(() => _snakeCount != snakeList.Count);
         }

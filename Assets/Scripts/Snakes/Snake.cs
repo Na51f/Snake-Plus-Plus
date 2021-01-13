@@ -28,18 +28,19 @@ namespace Scripts.Snakes
         private readonly Queue<GameObject> _tail;
         private Vector2 _direction;
         private Dictionary<string, Vector2> _controls;
+        private SnakeManager _snakeManager;
 
         /// <summary>
         /// Constructor
         /// <c> Snake() </c>
-        /// Creates a new 
+        /// Creates a new list of snakes and 
         /// </summary>
         public Snake()
         {
             Head = new GameObject();
             Head.transform.position = Position;
             _tail = new Queue<GameObject>();
-            SetControls(up, down, left, right); 
+            SetControls(up, down, left, right);
             Head.GetComponent<SpriteRenderer>().color = color;
         }
 
@@ -65,10 +66,10 @@ namespace Scripts.Snakes
         /// Assigns controls of this snake instance to vectors to assign
         /// positions. Assigns one key (as a string) to one vector.
         /// </summary>
-        /// <param name="u">Up Key</param>
-        /// <param name="d">Down Key</param>
-        /// <param name="l">Left Key</param>
-        /// <param name="r">Right Key</param>
+        /// <param name="u"> Up Key </param>
+        /// <param name="d"> Down Key </param>
+        /// <param name="l"> Left Key </param>
+        /// <param name="r"> Right Key </param>
         private void SetControls(string u, string d, string l, string r)
         {
             _controls = new Dictionary<string, Vector2>
@@ -95,7 +96,10 @@ namespace Scripts.Snakes
         }
 
         /// <summary>
-        ///
+        /// Function
+        /// <c> Update </c>
+        /// Checks for control inputs for this snake.
+        /// Moves snake on every frame.
         /// </summary>
         public void Update()
         {
